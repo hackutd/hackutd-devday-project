@@ -73,10 +73,12 @@ export default function Video() {
           ) : (
             <ul className="flex flex-wrap gap-8">
               {recommendedVideos.map((video) => (
-                <VideoCard
-                  title={video.title}
-                  thumbnailURL={video.thumbnailUrl}
-                />
+                <a href={`/video/${video.id}`}>
+                  <VideoCard
+                    title={video.title}
+                    thumbnailURL={video.thumbnailUrl}
+                  />
+                </a>
               ))}
             </ul>
           )}

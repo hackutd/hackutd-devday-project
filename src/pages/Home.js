@@ -26,10 +26,12 @@ export default function Home() {
         ) : (
           <ul className="flex flex-wrap gap-32">
             {recommendedVideos.map((video) => (
-              <VideoCard
-                title={video.title}
-                thumbnailURL={video.thumbnailUrl}
-              />
+              <a href={`/video/${video.id}`}>
+                <VideoCard
+                  title={video.title}
+                  thumbnailURL={video.thumbnailUrl}
+                />
+              </a>
             ))}
           </ul>
         )}

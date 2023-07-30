@@ -5,22 +5,33 @@ import Navbar from "../components/Navbar";
 import { useEffect, useState } from "react";
 import Spinner from "../components/Spinner";
 import { apiBaseURL } from "../constants";
+import VideoCard from "../components/VideoCard";
 
 export default function Video() {
+  const { id } = useParams();
+
   const [video, setVideo] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { id } = useParams();
+  const [recommendedVideos, setRecommendedVideos] = useState([]);
+  const [recommendedVideosLoading, setRecommendedVideosLoading] =
+    useState(true);
 
   useEffect(() => {
     fetch(`${apiBaseURL}/${id}`)
-      .then((r) => {
-        console.log(r);
-        return r;
-      })
       .then((r) => r.json())
       .then((video) => setVideo(video))
       .finally(() => setLoading(false));
   }, [id]);
+
+  useEffect(() => {
+    if (video) {
+      fetch(`${apiBaseURL}`)
+        .then((r) => r.json())
+        .then((videos) => videos.filter((v) => v.id !== video.id))
+        .then(setRecommendedVideos)
+        .finally(() => setRecommendedVideosLoading(false));
+    }
+  }, [video, setRecommendedVideos]);
 
   return loading || !video ? (
     <div className="w-screen h-screen bg-primary flex items-center justify-center">
@@ -56,8 +67,19 @@ export default function Video() {
         </section>
 
         <section className="mt-12">
-          <h3 className="text-xl font-bold">Watch more</h3>
-          <ul>{/* TODO: list video cards here */}</ul>
+          <h3 className="text-xl font-bold mb-4">Watch more</h3>
+          {recommendedVideosLoading ? (
+            <Spinner />
+          ) : (
+            <ul className="flex flex-wrap gap-8">
+              {recommendedVideos.map((video) => (
+                <VideoCard
+                  title={video.title}
+                  thumbnailURL={video.thumbnailUrl}
+                />
+              ))}
+            </ul>
+          )}
         </section>
       </section>
     </div>

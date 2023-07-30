@@ -11,7 +11,7 @@ export default function Video() {
   const { id } = useParams();
 
   const [video, setVideo] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [videoLoading, setLoading] = useState(true);
   const [recommendedVideos, setRecommendedVideos] = useState([]);
   const [recommendedVideosLoading, setRecommendedVideosLoading] =
     useState(true);
@@ -33,7 +33,7 @@ export default function Video() {
     }
   }, [video, setRecommendedVideos]);
 
-  return loading || !video ? (
+  return videoLoading || !video ? (
     <div className="w-screen h-screen bg-primary flex items-center justify-center">
       <Spinner />
     </div>

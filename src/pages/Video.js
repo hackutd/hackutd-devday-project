@@ -1,10 +1,12 @@
+import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
+import { fetchAllVideos, fetchVideoById } from "../api";
 import { ReactComponent as ThumbsUpIcon } from "../assets/thumbs-up.svg";
 import { ReactComponent as ThumbsDownIcon } from "../assets/thumbs-down.svg";
+
 import Navbar from "../components/Navbar";
-import { useEffect, useState } from "react";
 import Spinner from "../components/Spinner";
-import { apiBaseURL } from "../constants";
 import VideoCard from "../components/VideoCard";
 
 export default function Video() {
@@ -16,22 +18,45 @@ export default function Video() {
   const [recommendedVideosLoading, setRecommendedVideosLoading] =
     useState(true);
 
-  useEffect(() => {
-    fetch(`${apiBaseURL}/${id}`)
-      .then((r) => r.json())
-      .then((video) => setVideo(video))
-      .finally(() => setLoading(false));
+  /**
+   * fetchVideo fetches the video by the id in the url parameter and sets the video state.
+   * fetchVideo alerts on error and never rejects.
+   * All videos to have the following string fields id, title, and thumnailUrl field.
+   */
+  const fetchVideo = useCallback(async () => {
+    if (id) {
+      const data = await fetchVideoById(id).catch((err) => {
+        alert(err.message);
+      });
+
+      setVideo(data);
+      setLoading(false);
+    }
   }, [id]);
 
   useEffect(() => {
+    fetchVideo();
+  }, [fetchVideo]);
+
+  /**
+   * fetchRecommendedVideos fetches all videos and sets the recommendedVideos state.
+   * fetchRecommendedVideos alerts on error and never rejects.
+   * All videos to have the following string fields id, title, and thumnailUrl field.
+   */
+  const fetchRecommendedVideos = useCallback(async () => {
     if (video) {
-      fetch(`${apiBaseURL}`)
-        .then((r) => r.json())
-        .then((videos) => videos.filter((v) => v.id !== video.id))
-        .then(setRecommendedVideos)
-        .finally(() => setRecommendedVideosLoading(false));
+      const data = await fetchAllVideos().catch((err) => {
+        alert(`Failed to fetch recommended videos: ${err.message}`);
+      });
+
+      setRecommendedVideos(data.filter((v) => v.id !== video.id));
+      setRecommendedVideosLoading(false);
     }
-  }, [video, setRecommendedVideos]);
+  }, [video]);
+
+  useEffect(() => {
+    fetchRecommendedVideos();
+  }, [fetchRecommendedVideos]);
 
   return videoLoading || !video ? (
     <div className="w-screen h-screen bg-primary flex items-center justify-center">

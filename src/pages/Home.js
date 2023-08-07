@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { apiBaseURL } from "../constants";
+import { fetchAllVideos } from "../api";
+
 import Navbar from "../components/Navbar";
 import Spinner from "../components/Spinner";
 import VideoCard from "../components/VideoCard";
@@ -9,11 +10,22 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [recommendedVideos, setRecommendedVideos] = useState([]);
 
+  /**
+   * fetchData fetches all videos and sets the recommendedVideos state.
+   * fetchData alerts on error and never rejects.
+   * All videos to have the following string fields id, title, and thumnailUrl field.
+   */
+  async function fetchData() {
+    const data = await fetchAllVideos().catch((err) => {
+      alert(`Failed to fetch recommended videos: ${err.message}`);
+    });
+
+    setRecommendedVideos(data);
+    setLoading(false);
+  }
+
   useEffect(() => {
-    fetch(`${apiBaseURL}`)
-      .then((r) => r.json())
-      .then(setRecommendedVideos)
-      .finally(() => setLoading(false));
+    fetchData();
   }, []);
 
   return (

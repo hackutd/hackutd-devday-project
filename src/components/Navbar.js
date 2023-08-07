@@ -1,4 +1,5 @@
 import { ReactComponent as Logo } from "../assets/logo.svg";
+
 export default function Navbar() {
   return (
     <nav className="w-screen font-bold text-2xl bg-secondary text-text-primary whitespace-nowrap flex p-4 gap-[15%]">

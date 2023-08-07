@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+
 import { apiBaseURL } from "../constants";
+import Navbar from "../components/Navbar";
 import Spinner from "../components/Spinner";
 import VideoCard from "../components/VideoCard";
 

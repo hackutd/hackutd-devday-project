@@ -58,11 +58,16 @@ export default function Video() {
     fetchRecommendedVideos();
   }, [fetchRecommendedVideos]);
 
-  return videoLoading || !video ? (
-    <div className="w-screen h-screen bg-primary flex items-center justify-center">
-      <Spinner />
-    </div>
-  ) : (
+  // Return if video is still loading or video object is null/undefined.
+  if (videoLoading || !video) {
+    return (
+      <div className="w-screen h-screen bg-primary flex items-center justify-center">
+        <Spinner />
+      </div>
+    );
+  }
+
+  return (
     <div className="w-screen min-h-screen bg-primary text-text-primary overflow-x-hidden">
       <Navbar />
 

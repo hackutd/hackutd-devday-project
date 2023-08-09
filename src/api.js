@@ -1,4 +1,4 @@
-import { apiBaseURL } from "./constants";
+import { apiBaseURL } from './constants';
 
 /**
  * fetchAllVideos fetches videos from the / API route and returns an array of video objects.
@@ -7,24 +7,24 @@ import { apiBaseURL } from "./constants";
  * Will reject the Promise if fetch fails or body is not JSON.
  */
 export async function fetchAllVideos() {
-  const res = await fetch(apiBaseURL).catch((err) => {
-    throw new Error(
-      `failed to fetch data from ${apiBaseURL}. err: ${err.message}`
-    );
-  });
-  if (res.status !== 200) {
-    throw new Error(
-      `failed to fetch data from ${apiBaseURL} with status ${res.status}`
-    );
-  }
+    const res = await fetch(apiBaseURL).catch((err) => {
+        throw new Error(
+            `failed to fetch data from ${apiBaseURL}. err: ${err.message}`,
+        );
+    });
+    if (res.status !== 200) {
+        throw new Error(
+            `failed to fetch data from ${apiBaseURL} with status ${res.status}`,
+        );
+    }
 
-  const data = await res.json().catch((err) => {
-    throw new Error(
-      `failed to fetch data from ${apiBaseURL}. err: ${err.message}`
-    );
-  });
+    const data = await res.json().catch((err) => {
+        throw new Error(
+            `failed to fetch data from ${apiBaseURL}. err: ${err.message}`,
+        );
+    });
 
-  return data;
+    return data;
 }
 
 /**
@@ -34,19 +34,23 @@ export async function fetchAllVideos() {
  * Will reject the Promise if fetch fails or body is not JSON.
  */
 export async function fetchVideoById(id) {
-  const url = `${apiBaseURL}/${id}`;
-  const res = await fetch(`${apiBaseURL}/${id}`).catch((err) => {
-    throw new Error(`failed to fetch data from ${url}. err: ${err.message}`);
-  });
-  if (res.status !== 200) {
-    throw new Error(
-      `failed to fetch data from ${url} with status ${res.status}`
-    );
-  }
+    const url = `${apiBaseURL}/${id}`;
+    const res = await fetch(`${apiBaseURL}/${id}`).catch((err) => {
+        throw new Error(
+            `failed to fetch data from ${url}. err: ${err.message}`,
+        );
+    });
+    if (res.status !== 200) {
+        throw new Error(
+            `failed to fetch data from ${url} with status ${res.status}`,
+        );
+    }
 
-  const data = await res.json().catch((err) => {
-    throw new Error(`failed to fetch data from ${url}. err: ${err.message}`);
-  });
+    const data = await res.json().catch((err) => {
+        throw new Error(
+            `failed to fetch data from ${url}. err: ${err.message}`,
+        );
+    });
 
-  return data;
+    return data;
 }

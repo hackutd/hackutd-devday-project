@@ -7,7 +7,7 @@ import { ReactComponent as ThumbsDownIcon } from '../assets/thumbs-down.svg';
 
 import Navbar from '../components/Navbar';
 import Spinner from '../components/Spinner';
-import VideoCard from '../components/VideoCard';
+import RecommendedVideos from '../components/RecommendedVideos';
 
 export default function Video() {
     const { id } = useParams();
@@ -98,19 +98,10 @@ export default function Video() {
 
                 <section className="mt-12">
                     <h3 className="mb-4 text-xl font-bold">Watch more</h3>
-                    {recommendedVideosLoading ? (
-                        <Spinner />
-                    ) : (
-                        <ul className="flex flex-wrap gap-8">
-                            {recommendedVideos.map((video) => (
-                                <VideoCard
-                                    id={video.id}
-                                    title={video.title}
-                                    thumbnailURL={video.thumbnailUrl}
-                                />
-                            ))}
-                        </ul>
-                    )}
+                    <RecommendedVideos
+                        videos={recommendedVideos}
+                        loading={recommendedVideosLoading}
+                    />
                 </section>
             </section>
         </div>

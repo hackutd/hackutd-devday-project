@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react';
 import { fetchAllVideos } from '../api';
 
 import Navbar from '../components/Navbar';
-import Spinner from '../components/Spinner';
-import VideoCard from '../components/VideoCard';
+import RecommendedVideos from '../components/RecommendedVideos';
 
 export default function Home() {
     const [loading, setLoading] = useState(true);
@@ -34,19 +33,10 @@ export default function Home() {
 
             <section className="flex w-full flex-col justify-center gap-4 px-[16vw] py-12">
                 <h2 className="mb-4 text-2xl font-bold">Anime List</h2>
-                {loading ? (
-                    <Spinner />
-                ) : (
-                    <ul className="flex flex-wrap gap-32">
-                        {recommendedVideos.map((video) => (
-                            <VideoCard
-                                id={video.id}
-                                title={video.title}
-                                thumbnailURL={video.thumbnailUrl}
-                            />
-                        ))}
-                    </ul>
-                )}
+                <RecommendedVideos
+                    videos={recommendedVideos}
+                    loading={loading}
+                />
             </section>
         </div>
     );

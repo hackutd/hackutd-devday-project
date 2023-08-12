@@ -8,7 +8,7 @@ function Navbar() {
     * Keep in mind how the navbar has sticky and top-0 so that it stays at the top when scrolling
     * 
     */
-    <nav className="sticky top-0 order-first flex items-center gap-[15%] w-screen whitespace-nowrap bg-secondary p-4 text-2xl font-bold text-text-primary" >
+    <nav className="sticky top-0 z-10 flex items-center gap-[15%] w-screen whitespace-nowrap bg-secondary p-4 text-2xl font-bold text-text-primary" >
         {/* LOGO (make sure to show what happens when flex is off for the div below */}
         <div className="flex ml-12 gap-2">
         

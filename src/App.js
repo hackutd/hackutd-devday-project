@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 // Introduce react-router
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-// 1. Create a seperate page to show the videos
-// 2. Update the api.js to get a single video
-// 3. Update the video cards to link to their video page
+
 import Video from './pages/Video';
 import Home from './pages/Home';
 

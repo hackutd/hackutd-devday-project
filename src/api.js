@@ -31,7 +31,7 @@ export async function fetchAllVideos() {
  * Will reject the Promise if fetch fails or body is not JSON.
  */
 export async function fetchVideoById(id) {
-    // 1. Update so we have the ability to just grab 1 element from the api
+    
     const res = await fetch(`${apiBaseURL}/${id}`);
 
     if (res.status !== 200) {

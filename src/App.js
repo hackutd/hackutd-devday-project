@@ -1,27 +1,37 @@
 import { useEffect, useState } from 'react';
-// 3. Create the Dashboard component
-import Dashboard from "./components/Dashboard";
-// 1. Create the api.js and constants.js
-import { fetchAllVideos, fetchVideoById } from "./api";
+// Introduce react-router
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+
+// 1. Create a seperate page to show the videos
+// 2. Update the api.js to get a single video
+// 3. Update the video cards to link to their video page
+import Video from './pages/Video';
+import Home from './pages/Home';
+
+// Since we moved the homepage into a seperate page we can get rid of these component imports
+
+
+// 4. Show that we can use the browser router to get to our different pages
+const router = createBrowserRouter([
+  // 7. Since we learned about routing, we can make the homepage into an actual page
+  // 8. Link the homepage to the navbar 
+  {
+      path: '/',
+      element: <Home />,
+  },
+  // 5. We can go further into routing by getting custom values
+  {
+      path: '/video/:id',
+      element: <Video />,
+  },
+]);
+
 
 function App() {
 
-
-  
   return (
-    <div className="App min-h-screen w-screen overflow-x-hidden bg-primary text-text-primary">
-      
-
-      <section className="flex w-full flex-col justify-center gap-4 px-[16vw] py-12">
-        <h2 className="mb-4 text-2xl font-bold">Anime List</h2>
-
-        {/* 2. Remove the list in here to a seperate Dashboard component */}
-        {/* 3. Inside the dashboard component, map the api elements to video cards */}
-        {/* 4. Update the video cards to take input from the api */}
-        <Dashboard/>
-
-      </section>
-    </div>
+    // 6. We can clean up our App.js and just use browser routing
+    <RouterProvider router={router} />
   );
 }
 

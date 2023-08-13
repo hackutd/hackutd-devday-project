@@ -6,7 +6,7 @@ import VideoCard from './VideoCard';
 
 function Dashboard() {
 
-    // 3. Introduce hooks and how we can use them to get data around our app
+    
     const [videos, setVideos] = useState([]);
 
     /**
@@ -15,7 +15,7 @@ function Dashboard() {
      * All videos to have the following string fields id, title, and thumnailUrl field.
      */
     async function fetchData() {
-    //   2. Get the data from the api.js to this component
+    
       const data = await fetchAllVideos();
       
       
@@ -27,10 +27,10 @@ function Dashboard() {
       fetchData();
     }, []);
 
-//   1. Move the list from the homepage to this component
+
   return (
     <ul className="flex flex-wrap gap-32">
-        {/* 4. Update the props to incorporate the data from the api */}
+        
     {videos.map((video) => (
         <VideoCard
             key={video.id}

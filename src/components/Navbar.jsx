@@ -3,7 +3,7 @@ import {ReactComponent as Logo} from '../assets/logo.svg'
 function Navbar() {
   return (
 
-    <nav className="sticky top-0 z-10 flex items-center gap-[15%] w-screen whitespace-nowrap bg-secondary p-4 text-2xl font-bold text-text-primary" >
+    <nav className="sticky top-0 z-10 shadow-xl flex items-center gap-[15%] w-screen whitespace-nowrap bg-secondary p-4 text-2xl font-bold text-text-primary" >
         
         <div className="flex ml-12 gap-2">
         

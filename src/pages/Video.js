@@ -11,7 +11,12 @@ export default function Video() {
     // 1. First see if we get functionality working by fetching a video
     const { id } = useParams();
 
-    const [video, setVideo] = useState();
+    const [video, setVideo] = useState({
+        id: "0",
+        title: "One Piece",
+        thumbnailUrl: "example.com",
+        videoUrl: "example.com"
+    });
 
     /**
      * fetchVideo fetches the video by the id in the url parameter and sets the video state.
@@ -33,10 +38,6 @@ export default function Video() {
     useEffect(() => {
         fetchVideo();
     }, [fetchVideo]);
-
-    if (!video) {
-        return null;
-    }
    
 
     return (

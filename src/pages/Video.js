@@ -11,7 +11,7 @@ export default function Video() {
     
     const { id } = useParams();
 
-    const [video, setVideo] = useState({});
+    const [video, setVideo] = useState(null);
 
     /**
      * fetchVideo fetches the video by the id in the url parameter and sets the video state.
@@ -34,7 +34,9 @@ export default function Video() {
         fetchVideo();
     }, [fetchVideo]);
 
-   
+   if (!video) {
+    return null;
+   }
 
     return (
         

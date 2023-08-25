@@ -1,9 +1,7 @@
-import logo from './assets/react-logo.png';
-
 function App() {
     return (
         <div className="flex h-screen w-screen items-center justify-center">
-            <img className="animate-spin-slow" src={logo} alt="" />
+            <h1 className="text-3xl font-bold underline">Hello world!</h1>
         </div>
     );
 }

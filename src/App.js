@@ -1,7 +1,13 @@
+import Navbar from './components/Navbar';
+import VideoCard from './components/VideoCard';
+
 function App() {
     return (
-        <div className="flex h-screen w-screen items-center justify-center">
-            <h1 className="text-3xl font-bold underline">Hello world!</h1>
+        <div className="min-h-screen w-screen overflow-x-hidden bg-primary text-text-primary">
+            <Navbar />
+            {/* update the padding to demonstrate tailwind more */}
+            <h1 className=" px-8 py-6 text-3xl font-bold ">Anime List</h1>
+            <VideoCard />
         </div>
     );
 }
